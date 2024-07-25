@@ -1,0 +1,42 @@
+import java.util.*;
+public class Program1 {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String input1=sc.next();
+        List<Integer> numbers = new ArrayList<>();
+        List<Character> operators = new ArrayList<>();
+
+        for (char ch : input1.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                numbers.add(Character.getNumericValue(ch));
+            } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+                operators.add(ch);
+            }
+        }
+        int result = numbers.get(0);
+        for (int i = 0; i < operators.size(); i++) {
+            char operator = operators.get(i);
+            int nextNumber = numbers.get(i + 1);
+
+            switch (operator) {
+                case '+':
+                    result += nextNumber;
+                    break;
+                case '-':
+                    result -= nextNumber;
+                    break;
+                case '*':
+                    result *= nextNumber;
+                    break;
+                case '/':
+                    result /= nextNumber;
+                    break;
+            }
+        }
+
+        System.out.println(result);
+    }
+}
+
+
