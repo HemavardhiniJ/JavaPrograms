@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Prog3 {
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter the number of elements:");
+        int n = s.nextInt();
+        int arr[] = new int[n];
+        int sum = 0;
+        ArrayList<Integer> al = new ArrayList<>();
+        System.out.println("Enter the elements:");
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = s.nextInt();
+        }
+        for (int i = 0; i < arr.length; i++) {
+            if (isPrime(arr[i])) {
+                al.add(arr[i]);
+            }
+        }
+        Collections.sort(al);
+        if (!al.isEmpty()) {
+            int smallestPrime = al.get(0);
+            for (int prime : al) {
+                sum += prime;
+            }
+            sum -= smallestPrime;
+        }
+
+        System.out.println("The sum of all prime numbers except the smallest is: " + sum);
+    }
+}
